@@ -1,0 +1,15 @@
+
+
+/*
+// $Id$
+*/
+
+
+div.copyscape_message div.main_title {font-size: 14pt; font-weight:bold;}
+div.copyscape_message div.title {font-size: 12pt; font-weight:bold;}
+div.copyscape_message div.examples {font-style: italic; margin-left:10px;} 
+div.copyscape_message ol li {margin-left:2em;} 
+div.copyscape_message div.more {text-align: right; width:100%; font-style: italic; text-decoration: underline;}
+
+div.error div.copyscape_message div.main_title {font-size: 10pt; font-weight:bold;}
+div.error div.copyscape_message div.title {font-size: 8pt; font-weight:normal;} 

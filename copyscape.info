@@ -1,0 +1,8 @@
+name = Copyscape
+description = Copyscape Premium API Implementation for Drupal
+package = "* KOC"
+core = 6.x
+dependencies[] = querypath
+
+ 
+

@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * 
+ */
+ 
+ // $Id$
+
+/**
+ * Implementation of hook_install().
+ */
+function copyscape_install() {
+  drupal_set_message("copyscape_install");
+  $result = drupal_install_schema('copyscape');
+  foreach ($result as $key => $try) {
+    $key++;
+    $total = count($result);
+    if ($try['success']) drupal_set_message(st("Copyscape table $key of $total successfully installed")); 
+  } 
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function copyscape_uninstall() {
+  drupal_set_message("copyscape_uninstall");
+  drupal_uninstall_schema('copyscape');
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function copyscape_schema() {
+  $schema['copyscape'] = array( 
+    'description' => t('Cache data for copyscape service'),    
+    'fields' => array(  
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE, 
+        'default' => 0,
+        'description' => t('Primary Key: Node id for Copyscape'),
+      ), 
+      'score' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE, 
+        'default' => 0,
+        'description' => t('Node score for quick lookup'),
+      ),  
+      'copydata' => array(
+        'type' => 'text', 
+        'not null' => TRUE, 
+        'default' => '',
+        'description' => t('Copyscape data for this node'),
+      ),
+    ),
+    'primary key' => array('nid'), 
+  );
+  return $schema;
+}
+
+
+/**
+* Update 1: Add a 'handle' field for private indexing
+*/
+function copyscape_update_1() {
+  $ret = array();
+  db_add_field($ret, 'copyscape', 'handle', array(
+        'type' => 'varchar', 
+        'not null' => TRUE, 
+        'default' => '',
+        'description' => t('Node handle for indexing'),
+    )  
+  );
+  return $ret;
+}
+
+
+
+
+
+
